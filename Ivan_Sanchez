@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+</head>
+<style>
+    table {
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+ }
+ th, td {
+    text-align: center;
+    border: 1px solid rgba(0, 14, 94, 0.877);
+    border-collapse: collapse;
+    font-family: 'arial';
+ }
+body{
+    font-size: 20px;
+    color: #000;
+    font-family: 'arial';
+}
+.titulo{
+    border-top-right-radius: 20%;
+        text-align: center;
+        width: 100%;
+}
+.table{
+    text-align: center;
+    width: 100%;
+}
+header{
+    background: black;
+    color: blanchedalmond;
+    margin: 0;
+ 
+}
+</style>
+<header>   <div class="titulo">
+    <h1>Bienvenido a tu carrito de compras</h1>
+  </div><br></header>
+<body>
+    <div class="table">
+        <table>
+          <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Precio</td>
+            <td>Imagen</td>
+        </tr>
+        <tbody id="data">
+        </tbody>
+      </table>
+    </div>
+
+      <script>
+        let url = "https://licorne.mx/prueba/api.php"
+        fetch(url)
+        .then (response => response.json())
+        .then (data => mostrarData(data))
+        .catch(err => console.log(err))
+
+    const mostrarData = (data) => {
+        console.log(data)
+        let body = ''
+        for (let i=0; i<data.length; i++){
+            body += `<tr><td>${data[i].id}</td><td>${data[i].nombre}</td><td>${data[i].precio}</td><td><img src="${data[i].imagen}"></td></tr>`
+        }
+
+        document.getElementById('data').innerHTML = body
+    }
+</script>
+
+</body>
+</html>
